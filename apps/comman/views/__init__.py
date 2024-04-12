@@ -1,0 +1,1 @@
+from .user_reg import UserViewSet

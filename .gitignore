@@ -1,0 +1,11 @@
+.env
+
+apps/*/migrations/
+
+apps.comman.migrations
+apps.cms.migrations
+apps.comman.migrations
+apps.webportal.migrations
+
+ **/migrations/*
+ !**/migrations/__init__.py
