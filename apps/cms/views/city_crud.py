@@ -18,3 +18,10 @@ class CityViewSet(ModelViewSet):
             'data': response.data
         }
         return Response(data, status=response.status_code)
+    def delete(self, request, *args, **kwargs):
+        response = super().create(request, *args, **kwargs)
+        data = {
+            'message': 'successful',
+            'data': response.data
+        }
+        return Response(data, status=response.status_code)

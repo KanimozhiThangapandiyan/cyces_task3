@@ -12,12 +12,24 @@ class StateSerializer(serializers.ModelSerializer):
         model = State
         fields = ['id','state_country', 'state_name']
 
+class CUStateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = State
+        fields = ['id','state_country', 'state_name']
+
+
 class CitySerializer(serializers.ModelSerializer):
     city_country=CountrySerializer()
     city_state=StateSerializer()
     class Meta:
         model = City
         fields = ['id','city_name','city_country','city_state']
+
+class CUCitySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = City
+        fields = ['id','city_name','city_country','city_state']
+
 
 class UserRegisterSerializer(serializers.ModelSerializer):
     class Meta:
