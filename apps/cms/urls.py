@@ -1,8 +1,7 @@
 from django.urls import include, path
 from rest_framework import routers
-from apps.cms.views import UserViewSet,CountryViewSet,StateViewSet,CreateStateView,UpdateStateView,CityViewSet,CreateCityView,UpdateCityView
-from apps.cms.views import export_users_csv
-from apps.cms.views import ImportDataFromCSV
+from apps.cms.views import UserViewSet,CountryViewSet,StateViewSet,CreateStateView,UpdateStateView,CityViewSet,\
+    CreateCityView,UpdateCityView,ImportDataFromCSV,ExportUsersCSV
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet, basename="user")
@@ -15,7 +14,7 @@ urlpatterns = [
     path('state/update/<int:pk>/', UpdateStateView.as_view(), name='state_update'),
     path('city/create/', CreateCityView.as_view(), name='city_create'),
     path('city/update/<int:pk>/', UpdateCityView.as_view(), name='city_update'),
-    path('users/export/', export_users_csv, name='export_users_csv'),
+    path('users/export/', ExportUsersCSV.as_view(), name='export_users_csv'),
     path('data/import/', ImportDataFromCSV.as_view(), name='import_data'),
     
 

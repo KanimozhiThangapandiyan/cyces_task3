@@ -1,6 +1,5 @@
 import csv
 from django.http import JsonResponse
-from django.views import View
 from apps.comman.models import Country, State, City
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -17,7 +16,7 @@ class ImportDataFromCSV(APIView):
             response = self.import_data_from_csv(csv_file)
             return response
         else:
-            return response({"error": "No CSV file provided"}, status=400)
+            return JsonResponse({"error": "No CSV file provided"}, status=400)
     
     def import_data_from_csv(self, csv_file):
         success_message = {"message": "Data imported successfully"}
@@ -38,4 +37,4 @@ class ImportDataFromCSV(APIView):
             )
             print(f"Created city: {city}")
 
-        return Response(success_message)
+        return JsonResponse(success_message)

@@ -7,7 +7,7 @@ from apps.comman.models import User
 def send_registration_email(sender, instance, created, **kwargs):
     if created:
         subject = 'Welcome to Our Website'
-        message = f'Hi {instance.first_name},\n\nThank you for registering on our website!'
+        message = f'Hi {instance.first_name +" "+instance.last_name},\n\nThank you for registering on our website!'
         from_email = 'mtkanimozhi@gmail.com'
         to_email = instance.email
         send_mail(subject, message, from_email, [to_email])
