@@ -14,8 +14,6 @@ class ImportDataFromCSV(APIView):
     def post(self, request):
         if 'file' in request.FILES:
             csv_file = request.FILES['file']
-
-            # Call the import_data_from_csv function to process the file
             response = self.import_data_from_csv(csv_file)
             return response
         else:
