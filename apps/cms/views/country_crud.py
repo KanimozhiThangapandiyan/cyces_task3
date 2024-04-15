@@ -24,3 +24,26 @@ class CountryViewSet(ModelViewSet):
             'data': response.data
         }
         return Response(data, status=response.status_code)
+
+#importing countries   
+import csv
+from django.http import JsonResponse
+from rest_framework.views import APIView
+
+class ImportCountryFromCSV(APIView):
+    def post(self, request):
+        if 'file' in request.FILES:
+            csv_file = request.FILES['file']
+            decoded_file = csv_file.read().decode('utf-8').splitlines()
+            # Convert all data in CSV file to lowercase
+            reader = csv.DictReader(decoded_file)
+            for row in reader:
+                # Create or update Country object
+                country, created = Country.objects.update_or_create(
+                    country_name=row['country_name'].lower()
+                )
+                print(f"Imported country: {country}")
+
+            return JsonResponse({"message": "Countries imported successfully"})
+        else:
+            return JsonResponse({"error": "No CSV file provided"}, status=400)

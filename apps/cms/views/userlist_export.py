@@ -21,13 +21,16 @@ from django.http import HttpResponse
 import csv
 from apps.comman.models import User
 from django.views import View
+from datetime import datetime
 
 class ExportUsersCSV(View):
     def get(self, request):
         success_message = {"message": "Users exported successfully"}
+        current_datetime = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+        filename = f"users_{current_datetime}.csv"
         response = HttpResponse(content_type='text/csv')
-        response['Content-Disposition'] = 'attachment; filename="users.csv"'
-
+        response['Content-Disposition'] = f'attachment; filename="{filename}"'
+    
         writer = csv.writer(response)
         writer.writerow(['First Name', 'Last Name', 'Email', 'Phone Number', 'Country', 'State', 'City'])
 
