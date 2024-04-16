@@ -41,7 +41,7 @@ class ImportStateFromCSV(APIView):
             for row in reader:
                 # Get or create Country object
                 country_name = row['country_name'].lower()
-                country, created = Country.objects.update_or_create(country_name=country_name)
+                country, created = Country.objects.get_or_create(country_name=country_name)
 
                 # Create or update State object
                 state_name = row['state_name'].lower()

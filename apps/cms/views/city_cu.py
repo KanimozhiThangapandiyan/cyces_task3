@@ -40,11 +40,11 @@ class ImportCityFromCSV(APIView):
             reader = csv.DictReader(decoded_file)
             for row in reader:
                 country_name = row['country_name'].lower()
-                country, created = Country.objects.update_or_create(country_name=country_name)
+                country, created = Country.objects.get_or_create(country_name=country_name)
 
                 # Get or create State object
                 state_name = row['state_name'].lower()
-                state, created = State.objects.update_or_create(
+                state, created = State.objects.get_or_create(
                     state_name=state_name,
                     state_country=country,
                 )

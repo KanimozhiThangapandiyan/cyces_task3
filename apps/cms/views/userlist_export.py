@@ -40,4 +40,4 @@ class ExportUsersCSV(View):
                              user.user_country.country_name, user.user_state.state_name, user.user_city.city_name])
 
         return response
-    
+
